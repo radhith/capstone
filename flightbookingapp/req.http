@@ -1,0 +1,76 @@
+###
+POST http://localhost:3000/auth/login
+content-type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+###
+GET http://localhost:3000/auth/
+
+###
+POST http://localhost:3000/airline
+Content-Type: application/json
+
+{
+    "name":"WindFlow"
+}
+
+
+###
+POST  http://localhost:3000/flightbooking
+Content-Type:application/json
+
+{
+    "flight_number" : "dp235",
+    "airline_id" : 1,
+    "from_place" : "delhi",
+    "to_place" : "chennai",
+    "start_time" : "10:35", 
+    "end_time" : "13:45",
+    "total_number_of_business_class_seats" : "50",
+    "total_number_of_nonbusiness_class_seats" : "50", 
+    "ticket_cost" : "5000",
+    "total_number_of_seats" : "100",
+    "meal" : "veg" 
+    }
+
+###
+
+PUT  http://localhost:3000/airline
+Content-Type:application/json
+
+{
+    "name":"IndigoAirlines",
+    "blocked":"yes",
+    "id":1
+    }
+
+###
+
+GET  http://localhost:3000/flightbooking
+Content-Type:application/json
+
+{ 
+"date": "23/02/2023",
+"from_place": "delhi",
+"to_place": "chennai",
+"round_trip": "yes" 
+}
+
+###
+POST http://localhost:3000/flightbooking/booking
+content-type:application/json
+
+{ "flight_id": "dp234",
+ "booked_by": "mahesh",
+"emailId": "mahesh@gmail.com",
+ "number_of_seats": 2,
+  "passengers": 
+  [{"name": "ramesh",
+   "age": 24, "gender": 
+   "male"},
+   {"name": "suresh", "age": 22, "gender": "male"}],
+   "selected_meal": "veg", 
+  "selected_seat_number": null }
