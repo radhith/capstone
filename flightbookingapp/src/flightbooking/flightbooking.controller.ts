@@ -1,7 +1,8 @@
-import { Controller,Body,Post,Req,Get } from '@nestjs/common';
+import { Controller,Body,Post,Req,Get, Param, Put ,Response} from '@nestjs/common';
 import { IFlight } from './interface/flight.interface';
 import { FlightbookingService } from './flightbooking.service';
 import { IBooking } from './interface/booking.interface';
+import { HttpStatus } from '@nestjs/common/enums';
 @Controller('flightbooking')
 export class FlightbookingController {
     constructor(private flightbookingService:FlightbookingService){
@@ -36,4 +37,41 @@ export class FlightbookingController {
             throw new Error('flight not saved')
         }
     }
+
+    @Get('history/:emailId')
+    async bookingHistory(@Param('emailId') emailId:string){
+        console.log(emailId)
+        
+        try{
+            return this.flightbookingService.bookingHistory(emailId)
+        }catch(e){
+            throw new Error('flight not saved')
+        }
+    }
+
+    @Get('ticket/:pnr')
+    async ticketDetails(@Param('pnr') pnr:number){
+        console.log(pnr)
+        
+        try{
+            return this.flightbookingService.ticketDetails(pnr)
+        }catch(e){
+            throw new Error('flight not saved')
+        }
+    }
+
+    
+    @Put('cancel/:pnr')
+    async cancelTicket(@Param('pnr') pnr:number,@Response()res){
+        console.log(pnr)
+        
+        try{
+           await this.flightbookingService.cancelTicket(pnr);
+          res.status(HttpStatus.NO_CONTENT).send()
+        }catch(e){
+            throw new Error('flight not saved')
+        }
+    }
+
+
 }

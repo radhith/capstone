@@ -1,14 +1,15 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { AirlineEntity } from "../../airline/entities/airline.entity";
 import { IFlight } from "../interface/flight.interface";
+import { BookingEntity } from "./booking.entity";
 @Entity('flight')
 export class FlightEntity implements IFlight{
     @PrimaryGeneratedColumn()
     id:number
 
     @Column()
-    flight_number:string
+    flight_number:number
 
     @Column()
     from_place:string
@@ -37,7 +38,7 @@ export class FlightEntity implements IFlight{
 
     @Column()
     meal:string
-
+   
     @ManyToOne(type=>AirlineEntity,airline=>airline.id,{
         nullable: true,
         cascade: true,

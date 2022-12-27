@@ -32,4 +32,26 @@ export class FlightbookingService {
         async bookFlight(booking:IBooking):Promise<BookingEntity>{
             return await this.bookingRepository.save(booking)
         }
+
+        
+    
+            async bookingHistory(emailId:string):Promise<BookingEntity[]>{
+                return await this.bookingRepository.find(
+                    {where:{emailId:emailId},
+                    relations:{
+                        passengers:true
+                    }
+                })
+            }
+            async ticketDetails(pnr:number):Promise<BookingEntity[]>{
+                return await this.bookingRepository.find(
+                    {where:{pnr:pnr},
+                    relations:{
+                        passengers:true
+                    }
+                })
+            }
+            async cancelTicket(pnr:number):Promise<any>{
+                return await this.bookingRepository.update(pnr,{status:'Inactive'})
+            }
 }

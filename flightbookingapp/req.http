@@ -63,14 +63,32 @@ Content-Type:application/json
 POST http://localhost:3000/flightbooking/booking
 content-type:application/json
 
-{ "flight_id": "dp234",
+{ "flight_id": 2,
  "booked_by": "mahesh",
-"emailId": "mahesh@gmail.com",
+"emailId": "mukesh@gmail.com",
  "number_of_seats": 2,
   "passengers": 
-  [{"name": "ramesh",
+  [{"name": "4pnr1",
    "age": 24, "gender": 
    "male"},
-   {"name": "suresh", "age": 22, "gender": "male"}],
+   {"name": "4pnr2", "age": 26, "gender": "male"}],
    "selected_meal": "veg", 
   "selected_seat_number": null }
+
+
+###
+  GET http://localhost:3000/flightbooking/history/mukesh@gmail.com
+Content-Type:application/json
+
+###
+  GET http://localhost:3000/flightbooking/ticket/1
+Content-Type:application/json
+
+
+###
+
+  PUT http://localhost:3000/flightbooking/cancel/16
+Content-Type:application/json
+
+
+###

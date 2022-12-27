@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BookingEntity } from "./booking.entity";
 import{IBooking}from"../interface/booking.interface";
 import { IPassenger } from "../interface/passenger.interface";
@@ -16,7 +16,9 @@ export class PassengerEntity implements IPassenger{
     @Column()
     age:number;
 
-    @OneToMany(type=>BookingEntity,booking =>booking.passengers)
+   
+
+    @ManyToMany(type=>BookingEntity,booking =>booking.passengers)
     bookings:BookingEntity[]
 
     
