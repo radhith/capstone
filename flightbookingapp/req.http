@@ -6,20 +6,18 @@ content-type: application/json
     "username":"admin",
     "password":"admin"
 }
-###
-GET http://localhost:3000/auth/
 
 ###
-POST http://localhost:3000/airline
+POST http://localhost:3000/airline/add
 Content-Type: application/json
 
 {
-    "name":"WindFlow"
+    "name":"airlinTest"
 }
 
 
 ###
-POST  http://localhost:3000/flightbooking
+POST  http://localhost:3000/flightbooking/flight
 Content-Type:application/json
 
 {
@@ -38,7 +36,7 @@ Content-Type:application/json
 
 ###
 
-PUT  http://localhost:3000/airline
+PUT  http://localhost:3000/airline/update/1
 Content-Type:application/json
 
 {
@@ -49,7 +47,7 @@ Content-Type:application/json
 
 ###
 
-GET  http://localhost:3000/flightbooking
+GET  http://localhost:3000/flightbooking/search
 Content-Type:application/json
 
 { 
@@ -66,8 +64,8 @@ content-type:application/json
 { "flight_id": 2,
  "booked_by": "mahesh",
 "emailId": "mukesh@gmail.com",
- "number_of_seats": 2,
-  "passengers": 
+ "number_of_seats": "2",
+  "passengers":
   [{"name": "4pnr1",
    "age": 24, "gender": 
    "male"},

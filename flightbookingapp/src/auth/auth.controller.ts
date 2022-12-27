@@ -7,9 +7,7 @@ export class AuthController {
     constructor(private authService: AuthService) {}
 
 
-    @Get()test(){
-        console.log('get')
-    }
+   
     
     @UseGuards(AuthGuard("local"))
     @Post('/login')

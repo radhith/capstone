@@ -1,6 +1,6 @@
 export interface IFlight{
     id?:number,
-    flight_number:number,
+    flight_number:string,
     from_place:string,
     to_place:string,
     start_time:string,

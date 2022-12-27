@@ -13,7 +13,7 @@ export class AirlineService {
         return await this.airlineRepository.save(airline)
     }
 
-    async updateAirline(airline:IAirline):Promise<any>{
-        return  this.airlineRepository.update(airline.id,{name:airline.name,blocked:airline.blocked})
+    async updateAirline(airline:IAirline,id):Promise<any>{
+        return  this.airlineRepository.update(id,{name:airline.name,blocked:airline.blocked})
     }
 }

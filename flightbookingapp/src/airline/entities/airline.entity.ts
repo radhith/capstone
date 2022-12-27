@@ -5,7 +5,7 @@ import { FlightEntity } from "../../flightbooking/entities/flight.entity";
 export class AirlineEntity implements IAirline {
     @PrimaryGeneratedColumn()
     id:number
-    @Column()
+    @Column({unique:true})
     name: string;
     @Column({default:"no"})
     blocked?: string;

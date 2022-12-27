@@ -9,7 +9,7 @@ export class FlightEntity implements IFlight{
     id:number
 
     @Column()
-    flight_number:number
+    flight_number:string
 
     @Column()
     from_place:string

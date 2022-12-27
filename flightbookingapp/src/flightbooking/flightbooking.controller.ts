@@ -1,15 +1,18 @@
-import { Controller,Body,Post,Req,Get, Param, Put ,Response} from '@nestjs/common';
+import { Controller,Body,Post,Req,Get, Param, Put ,Response, ParseIntPipe} from '@nestjs/common';
 import { IFlight } from './interface/flight.interface';
 import { FlightbookingService } from './flightbooking.service';
 import { IBooking } from './interface/booking.interface';
 import { HttpStatus } from '@nestjs/common/enums';
+import { FlightDto } from './dto/flight.dto';
+import { SearchDto } from './dto/searchDto';
+import { BookingDto } from './dto/booking.dto';
 @Controller('flightbooking')
 export class FlightbookingController {
     constructor(private flightbookingService:FlightbookingService){
 
     }
-    @Post()
-    async addFlight(@Body() flight:IFlight){
+    @Post('flight')
+    async addFlight(@Body() flight:FlightDto){
         console.log(JSON.stringify(flight))
         try{
             return this.flightbookingService.addFlight(flight)
@@ -18,8 +21,8 @@ export class FlightbookingController {
         }
     }
 
-    @Get()
-    async searchFlight(@Body() search:IFlight){
+    @Get('search')
+    async searchFlight(@Body() search:SearchDto){
         console.log(JSON.stringify(search))
         try{
             return this.flightbookingService.searchFlight(search)
@@ -29,7 +32,7 @@ export class FlightbookingController {
     }
 
     @Post('booking')
-    async bookFlight(@Body() booking:IBooking){
+    async bookFlight(@Body() booking:BookingDto){
         console.log(JSON.stringify(booking))
         try{
             return this.flightbookingService.bookFlight(booking)

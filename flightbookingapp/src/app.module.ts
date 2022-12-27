@@ -8,6 +8,7 @@ import { AirlineModule } from './airline/airline.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import{ConfigModule}from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { CommonModule } from './common/common.module';
 @Module({
   imports: [AuthModule, UserModule, FlightbookingModule, AirlineModule,TypeOrmModule.forRootAsync({
     useFactory: () => ({
@@ -25,7 +26,8 @@ import { JwtService } from '@nestjs/jwt';
       envFilePath: '.env',
       ignoreEnvFile: false,
     }
-  )
+  ),
+  CommonModule
 ],
   controllers: [AppController],
   providers: [AppService,JwtService],
