@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AirlineEntity } from '../airline/entities/airline.entity';
 import { Repository } from 'typeorm';
 import { BookingDto } from './dto/booking.dto';
 import { SearchDto } from './dto/searchDto';
@@ -24,11 +25,17 @@ export class FlightbookingService {
     }
 
     async searchFlight(search:SearchDto):Promise<FlightEntity[]>{
-        return await this.flightRepository.find(
-            {where:{
-                from_place:search.from_place,to_place:search.to_place
-            }  
-          })
+
+        return await
+         this.flightRepository.createQueryBuilder("flight").leftJoinAndSelect(AirlineEntity,'airline','flight.airlineIdId=airline.id')
+        .where('flight.from_place=:from_place',{from_place:search.from_place})
+        .andWhere('flight.to_place=:to_place',{to_place:search.to_place})
+        .andWhere('airline.blocked=:blocked',{blocked:'no'}).getMany()
+        // return await this.flightRepository.find(
+        //     {where:{
+        //         from_place:search.from_place,to_place:search.to_place
+        //     }  
+        //   })
         }
 
         async bookFlight(booking:any):Promise<BookingEntity>{

@@ -65,7 +65,7 @@ export class FlightbookingController {
 
     
     @Put('cancel/:pnr')
-    async cancelTicket(@Param('pnr') pnr:number,@Response()res){
+    async cancelTicket(@Param('pnr') pnr:number,@Response()res?:any){
         console.log(pnr)
         
         try{
